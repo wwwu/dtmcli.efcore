@@ -1,20 +1,20 @@
 # dtmcli.efcore
 
 https://dtm.pub
-DTMÊÇÒ»¿î¿ªÔ´µÄ·Ö²¼Ê½ÊÂÎñ¹ÜÀíÆ÷£¬½â¾ö¿çÊı¾İ¿â¡¢¿ç·şÎñ¡¢¿çÓïÑÔÕ»¸üĞÂÊı¾İµÄÒ»ÖÂĞÔÎÊÌâ¡£
+DTMæ˜¯ä¸€æ¬¾å¼€æºçš„åˆ†å¸ƒå¼äº‹åŠ¡ç®¡ç†å™¨ï¼Œè§£å†³è·¨æ•°æ®åº“ã€è·¨æœåŠ¡ã€è·¨è¯­è¨€æ ˆæ›´æ–°æ•°æ®çš„ä¸€è‡´æ€§é—®é¢˜ã€‚
 
 https://github.com/dtm-labs/dtmcli-csharp
-dtmcli-csharp ÊÇ·Ö²¼Ê½ÊÂÎñ¹ÜÀíÆ÷ DTM µÄ C# ¿Í»§¶Ë£¬Ê¹ÓÃ HTTP Ğ­ÒéºÍ DTM ·şÎñ¶Ë½øĞĞ½»»¥¡£
+dtmcli-csharp æ˜¯åˆ†å¸ƒå¼äº‹åŠ¡ç®¡ç†å™¨ DTM çš„ C# å®¢æˆ·ç«¯ï¼Œä½¿ç”¨ HTTP åè®®å’Œ DTM æœåŠ¡ç«¯è¿›è¡Œäº¤äº’ã€‚
 
-dtmcli.efcore ÔÚ dtmcli-csharp »ù´¡ÉÏ½øĞĞÁË¼òµ¥·â×°, À©Õ¹ÁËÒÔÏÂ¹¦ÄÜµã£º
-- ¶ÔefcoreµÄÖ§³Ö
-- ×ÓÊÂÎñÆÁÕÏ±íµÄ×Ô¶¯´´½¨
-- QueryPrepared»Ø²é½Ó¿ÚµÄÄ¬ÈÏÊµÏÖ
-- ÊÂÎñÌá½»¼°×ÓÊÂÎñÆÁÕÏµÄ´úÂë¼ò»¯
+dtmcli.efcore åœ¨ dtmcli-csharp åŸºç¡€ä¸Šè¿›è¡Œäº†ç®€å•å°è£…, æ‰©å±•äº†ä»¥ä¸‹åŠŸèƒ½ç‚¹ï¼š
+- å¯¹efcoreçš„æ”¯æŒ
+- å­äº‹åŠ¡å±éšœè¡¨çš„è‡ªåŠ¨åˆ›å»º
+- QueryPreparedå›æŸ¥æ¥å£çš„é»˜è®¤å®ç°
+- äº‹åŠ¡æäº¤åŠå­äº‹åŠ¡å±éšœçš„ä»£ç ç®€åŒ–
 
-¶Ô dtmcli-csharp Ô­ÓĞÊ¹ÓÃ·½·¨²»Ó°Ïì¡£
+å¯¹ dtmcli-csharp åŸæœ‰ä½¿ç”¨æ–¹æ³•ä¸å½±å“ã€‚
 
-### ÅäÖÃ
+### é…ç½®
 ```json
 {
   "dtm": {
@@ -24,9 +24,9 @@ dtmcli.efcore ÔÚ dtmcli-csharp »ù´¡ÉÏ½øĞĞÁË¼òµ¥·â×°, À©Õ¹ÁËÒÔÏÂ¹¦ÄÜµã£º
     "DBType": "mysql",
     "BarrierTableName": "barrier",
 
-    //À©Õ¹Ïî
-    "HostName": "localhost:5000", //±ØÌîÏî£¬µ±Ç°·şÎñhostºÍ¶Ë¿Ú
-    "QueryPreparedPath": "/dtm/queryprepared"; //¿ÉÑ¡Ïî£¬Ä¬ÈÏÎª/dtm/queryprepared
+    //æ‰©å±•é¡¹
+    "HostName": "localhost:5000", //å¿…å¡«é¡¹ï¼Œå½“å‰æœåŠ¡hostå’Œç«¯å£
+    "QueryPreparedPath": "/dtm/queryprepared"; //å¯é€‰é¡¹ï¼Œé»˜è®¤ä¸º/dtm/queryprepared
   }
 }
 ```
@@ -60,10 +60,10 @@ public class Startup
 }
 ```
 
-### ÓÃ·¨
+### ç”¨æ³•
 
 ```c#
-//Ö÷³ÌĞò¡¢ÊÂÎñ·¢Æğ·½
+//ä¸»ç¨‹åºã€äº‹åŠ¡å‘èµ·æ–¹
 
 [HttpPost("transfer")]
 public async Task<IActionResult> Transfer(
@@ -81,9 +81,9 @@ public async Task<IActionResult> Transfer(
         Amount = 100,
     };
     fullMsg.Add("http://localhost:5000/barrierTransOut", postData)
-        .EnableWaitResult(); //µÈ´ı×ÓÊÂÎñ½á¹û
+        .EnableWaitResult(); //ç­‰å¾…å­äº‹åŠ¡ç»“æœ
 
-    await fullMsg.DoAndSubmitDB(async () =>  //±¾µØÊÂÎñ¡¾ÏûÏ¢±í + ±¾µØÒµÎñ½Å±¾¡¿
+    await fullMsg.DoAndSubmitDB(async () =>  //æœ¬åœ°äº‹åŠ¡ã€æ¶ˆæ¯è¡¨ + æœ¬åœ°ä¸šåŠ¡è„šæœ¬ã€‘
     {
         await dbContext.SaveChangesAsync();
     });
@@ -92,7 +92,7 @@ public async Task<IActionResult> Transfer(
 ```
 
 ```c#
-//×ÓÊÂÎñ
+//å­äº‹åŠ¡
 [HttpPost("barrierTransOut")]
 public async Task<IActionResult> BarrierTransOut(
     [FromBody] TransRequest body,
@@ -103,9 +103,29 @@ public async Task<IActionResult> BarrierTransOut(
     var branchBarrier = fullBranchBarrierFactory.CreateBranchBarrier(HttpContext.Request.Query)!;
     await branchBarrier.Barrier(async () =>
     {
-        _logger?.LogInformation("ÓÃ»§: {0},×ª³ö {1} Ôª---»Ø¹ö", body.UserId, body.Amount);
+        _logger?.LogInformation("ç”¨æˆ·: {0},è½¬å‡º {1} å…ƒ---å›æ»š", body.UserId, body.Amount);
         await _myService.DoWork();
     });
     return Ok();
 }
+```
+
+### Mock
+```c#
+var fullDtmTransFactoryMock = new Mock<IFullDtmTransFactory>();
+
+var fullMsgMock = new Mock<FullMsg>();
+fullMsgMock.SetReturnsDefault(new FullMsg(null,null, null, null,null));
+fullMsgMock.Setup(s => s.DoAndSubmitDB(It.IsAny<Func<Task>>(), It.IsAny<CancellationToken>()))
+    .Returns(new InvocationFunc(invocation =>
+    {
+        var func = (Func<Task>)invocation.Arguments[0];
+        func();
+        return Task.CompletedTask;
+    }));
+
+fullDtmTransFactoryMock.Setup(s => s.NewFullMsg())
+    .Returns(fullMsgMock.Object);
+
+//fullDtmTransFactoryMock.Object;
 ```
