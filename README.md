@@ -38,7 +38,7 @@ public class Startup
     {
         //...
 
-		services.AddDtmcli<MyDbContext>(configuration);
+        services.AddDtmcli<MyDbContext>(configuration);
         //services.AddDtmcli<MyDbContext>(x =>
         //{
         //    x.DtmUrl = "http://localhost:36789";    
@@ -55,7 +55,7 @@ public class Startup
     {
         //...
 
-		app.DtmQueryPreparedRegister();
+        app.DtmQueryPreparedRegister();
     }
 }
 ```
@@ -85,7 +85,7 @@ public async Task<IActionResult> Transfer(
 
     await fullMsg.DoAndSubmitDB(async () =>  //本地事务【消息表 + 本地业务脚本】
     {
-        await _dbContext.SaveChangesAsync();
+        await dbContext.SaveChangesAsync();
     });
 }
 
