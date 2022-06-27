@@ -1,0 +1,27 @@
+name: Publish to nuget
+
+on:
+  push:
+    #branches: [ "main" ]
+    tags:
+    - '*'
+  #pull_request:
+  #  branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Pack
+      run: dotnet pack --no-restore
+    - name: Push
+      run: dotnet nuget push src/Dtm.EFCore/bin/Debug/*.nupkg --api-key ${{ secrets.nugetApikey }} --source https://api.nuget.org/v3/index.json

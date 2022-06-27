@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFramework>net6.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<PackageId>Dtmcli.EFCore</PackageId>
+	<Version>1.0.0</Version>
+	<PackageTags>dtm;dtmcli;dtm efcore;dtmcli efcore</PackageTags>
+	<Authors>wu</Authors>
+	<PackageProjectUrl>https://github.com/wwwu/dtmcli.efcore</PackageProjectUrl>
+	<Description>对Dtmcli的二次封装</Description>
+	<PackageReleaseNotes>
+	  对efcore的支持
+	  子事务屏障表的自动创建
+	  QueryPrepared回查接口的默认实现
+	</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dtmcli" Version="1.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.5" />
+  </ItemGroup>
+
+</Project>
